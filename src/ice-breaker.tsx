@@ -1,7 +1,18 @@
-import { Action, ActionPanel, AI, Clipboard, Detail, Icon, List, showToast, Toast } from "@raycast/api";
+import { Action, ActionPanel, AI, Clipboard, Detail, Icon, Image, List, showToast, Toast } from "@raycast/api";
 import React, { useEffect, useState } from "react";
 
-const questionStyles = ["Introspective", "Light-hearted", "Thought-provoking", "Funny"];
+type QuestionStyle = {
+  name: string;
+  description: string;
+  icon: Image.ImageLike;
+};
+
+const questionStyles: QuestionStyle[] = [
+  { name: "Introspective", description: "", icon: "🤔" },
+  { name: "Light-hearted", description: "", icon: "😌" },
+  { name: "Thought-provoking", description: "", icon: "🧠" },
+  { name: "Funny", description: "", icon: "🍆" },
+];
 const defaultCreativityLevel: AI.Creativity = "high";
 const creativityLevelContinuum: AI.Creativity[] = ["low", "medium", "high", "maximum"];
 
@@ -58,11 +69,13 @@ export default function Command() {
 
   const list = questionStyles.map((style) => (
     <List.Item
-      title={style}
-      key={style}
+      title={style.name}
+      key={style.name}
+      icon={style.icon}
+      subtitle={style.description}
       actions={
         <ActionPanel>
-          <Action title="Ask" onAction={() => setSelectedQuestionStyle(style)} />
+          <Action title="Ask" onAction={() => setSelectedQuestionStyle(style.name)} />
         </ActionPanel>
       }
     />
