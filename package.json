@@ -6,6 +6,10 @@
   "icon": "extension-icon.png",
   "author": "bryantee",
   "license": "MIT",
+  "categories": [
+    "Productivity",
+    "Fun"
+  ],
   "commands": [
     {
       "name": "ice-breaker",
@@ -21,10 +25,10 @@
     "run-applescript": "^7.0.0"
   },
   "devDependencies": {
-    "@raycast/eslint-config": "^1.0.6",
-    "@types/node": "20.8.10",
-    "@types/react": "18.2.27",
-    "eslint": "^8.51.0",
+    "@raycast/eslint-config": "^1.0.11",
+    "@types/node": "^22.15.17",
+    "@types/react": "^19.1.4",
+    "eslint": "^8.57.1",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
