@@ -1,4 +1,16 @@
-import { Action, ActionPanel, AI, Clipboard, Detail, Icon, Image, List, showToast, Toast } from "@raycast/api";
+import {
+  Action,
+  ActionPanel,
+  AI,
+  Clipboard,
+  Detail,
+  Icon,
+  Image,
+  Keyboard,
+  List,
+  showToast,
+  Toast,
+} from "@raycast/api";
 import React, { useEffect, useState } from "react";
 
 type QuestionStyle = {
@@ -140,13 +152,14 @@ Please provide just the question without any additional explanation or context.`
 
   return (
     <Detail
+      navigationTitle="Ice Breaker Question"
       markdown={markdown}
       actions={
         <ActionPanel>
           <Action title="Generate New" onAction={askQuestion} />
           <Action title="Start over" onAction={clear} />
-          <Action title="More Creative" onAction={increaseCreativityLevel} />
-          <Action title="Less Creative" onAction={lowerCreativityLevel} />
+          <Action title="More Creative" onAction={increaseCreativityLevel} shortcut={Keyboard.Shortcut.Common.MoveUp} />
+          <Action title="Less Creative" onAction={lowerCreativityLevel} shortcut={Keyboard.Shortcut.Common.MoveDown} />
         </ActionPanel>
       }
       metadata={
