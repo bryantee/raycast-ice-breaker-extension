@@ -8,10 +8,18 @@ type QuestionStyle = {
 };
 
 const questionStyles: QuestionStyle[] = [
-  { name: "Introspective", description: "", icon: "🤔" },
-  { name: "Light-hearted", description: "", icon: "😌" },
-  { name: "Thought-provoking", description: "", icon: "🧠" },
-  { name: "Funny", description: "", icon: "🍆" },
+  {
+    name: "Introspective",
+    description: "Deep, reflective questions about personal experiences and values",
+    icon: "🤔",
+  },
+  { name: "Light-hearted", description: "Fun, casual questions to create a relaxed atmosphere", icon: "😌" },
+  {
+    name: "Thought-provoking",
+    description: "Questions that spark interesting discussions and new perspectives",
+    icon: "🧠",
+  },
+  { name: "Funny", description: "Humorous questions to bring laughter and energy to the team", icon: "🍆" },
 ];
 const defaultCreativityLevel: AI.Creativity = "high";
 const creativityLevelContinuum: AI.Creativity[] = ["low", "medium", "high", "maximum"];
@@ -26,7 +34,22 @@ export default function Command() {
     setIsLoading(true);
 
     AI.ask(
-      `Give me a(n) random ${selectedQuestionStyle} icebreaker question that I can ask my teammates in a meeting to better know them? The question should not be a joke.`,
+      `
+      Generate a ${selectedQuestionStyle.toLowerCase()} ice-breaker question for a team meeting. The question should:
+
+- Help the team let loose and shake off any cobwebs before diving into the meeting
+- Help teammates get to know each other better on a personal level
+- Encourage sharing and connection
+- Be engaging and easy to answer
+- Avoid being cheesy, we're here to be chill
+- Don't make the team 🤦
+- Take 1-2 minutes to answer per person
+${selectedQuestionStyle === "Funny" ? "- Be humorous but respectful" : ""}
+${selectedQuestionStyle === "Introspective" ? "- Encourage reflection on personal experiences, values, or growth" : ""}
+${selectedQuestionStyle === "Light-hearted" ? "- Be fun and casual to create a relaxed atmosphere" : ""}
+${selectedQuestionStyle === "Thought-provoking" ? "- Spark interesting discussions and new perspectives" : ""}
+
+Please provide just the question without any additional explanation or context.`,
       { creativity: creativityLevel }
     )
       .then(async (q) => {
