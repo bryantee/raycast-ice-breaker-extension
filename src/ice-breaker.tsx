@@ -27,7 +27,7 @@ export default function Command() {
 
     AI.ask(
       `Give me a(n) random ${selectedQuestionStyle} icebreaker question that I can ask my teammates in a meeting to better know them? The question should not be a joke.`,
-      { creativity: creativityLevel },
+      { creativity: creativityLevel }
     )
       .then(async (q) => {
         setQuestion(q);
@@ -121,7 +121,7 @@ export default function Command() {
       actions={
         <ActionPanel>
           <Action title="Generate New" onAction={askQuestion} />
-          <Action title="Start Over" onAction={clear} />
+          <Action title="Start over" onAction={clear} />
           <Action title="More Creative" onAction={increaseCreativityLevel} />
           <Action title="Less Creative" onAction={lowerCreativityLevel} />
         </ActionPanel>
